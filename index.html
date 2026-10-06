@@ -1,50 +1,205 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <base target="_top">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <!-- Responsive สำหรับมือถือและคอม -->
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0,
+                   maximum-scale=1.0,
+                   minimum-scale=1.0,
+                   user-scalable=no,
+                   viewport-fit=cover">
+
     <title>MISSION REELS</title>
+
     <style>
+        /* ================================
+           RESET
+        ================================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
+        /* ================================
+           HTML / BODY
+        ================================= */
+        html,
+        body {
             width: 100%;
             height: 100%;
+
+            /* รองรับมือถือรุ่นใหม่ */
+            width: 100vw;
+            height: 100vh;
             width: 100dvw;
             height: 100dvh;
-            overflow: hidden; /* ป้องกันไม่ให้เกิด Scrollbar */
-            position: fixed; /* ล็อกหน้าจอไม่ให้ไถเลื่อนบนมือถือ */
-            touch-action: none; /* ป้องกันการใช้เกสเจอร์เลื่อนหน้าจอ */
-            overscroll-behavior: none; /* ป้องกันการเด้งสปริงบน iOS */
-            background-color: #ffffff;
+
+            margin: 0;
+            padding: 0;
+
+            overflow: hidden;
+            overscroll-behavior: none;
+
+            background: #ffffff;
+
+            /* ป้องกันการเลื่อนของหน้าหลัก */
+            position: fixed;
+            inset: 0;
+
+            /* ป้องกัน gesture ที่ทำให้หน้าหลักเลื่อน */
+            touch-action: none;
         }
 
-        .full-screen-iframe {
+        /* ================================
+           IFRAME CONTAINER
+        ================================= */
+        .iframe-wrapper {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
             width: 100%;
             height: 100%;
+
+            width: 100vw;
+            height: 100vh;
+
             width: 100dvw;
             height: 100dvh;
+
+            margin: 0;
+            padding: 0;
+
+            overflow: hidden;
+
+            background: #ffffff;
+        }
+
+        /* ================================
+           IFRAME
+        ================================= */
+        .full-screen-iframe {
+            display: block;
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            width: 100vw;
+            height: 100vh;
+
+            width: 100dvw;
+            height: 100dvh;
+
+            margin: 0;
+            padding: 0;
+
             border: 0;
             outline: none;
-            display: block;
+
+            overflow: hidden;
+
+            background: #ffffff;
+        }
+
+        /* ================================
+           MOBILE
+        ================================= */
+        @media screen and (max-width: 768px) {
+
+            html,
+            body,
+            .iframe-wrapper,
+            .full-screen-iframe {
+                width: 100%;
+                height: 100%;
+
+                width: 100vw;
+                height: 100vh;
+
+                width: 100dvw;
+                height: 100dvh;
+
+                max-width: 100%;
+                max-height: 100%;
+
+                overflow: hidden;
+            }
+        }
+
+        /* ================================
+           DESKTOP / COMPUTER
+        ================================= */
+        @media screen and (min-width: 769px) {
+
+            html,
+            body,
+            .iframe-wrapper,
+            .full-screen-iframe {
+                width: 100%;
+                height: 100%;
+
+                width: 100vw;
+                height: 100vh;
+
+                width: 100dvw;
+                height: 100dvh;
+
+                max-width: 100%;
+                max-height: 100%;
+
+                overflow: hidden;
+            }
+        }
+
+        /* ================================
+           SAFE AREA สำหรับมือถือ
+        ================================= */
+        @supports (height: 100svh) {
+            .iframe-wrapper,
+            .full-screen-iframe {
+                width: 100%;
+                height: 100svh;
+                width: 100svw;
+            }
+        }
+
+        @supports (height: 100dvh) {
+            .iframe-wrapper,
+            .full-screen-iframe {
+                width: 100dvw;
+                height: 100dvh;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <iframe 
-        class="full-screen-iframe"
-        src="https://script.google.com/macros/s/AKfycbwdFplPwqslyRLq2jtb1kZT3Yv77tTK_kyUvutnaih6z-ghLr1L7-DX351EuWSLaFYW/exec" 
-        allow="geolocation *; microphone *; camera *; clipboard-write *"
-        allowfullscreen="true"
-        scrolling="no">
-    </iframe>
+    <div class="iframe-wrapper">
+
+        <iframe
+            class="full-screen-iframe"
+            src="https://script.google.com/macros/s/AKfycbwdFplPwqslyRLq2jtb1kZT3Yv77tTK_kyUvutnaih6z-ghLr1L7-DX351EuWSLaFYW/exec"
+            allow="geolocation *; microphone *; camera *; clipboard-write *"
+            allowfullscreen
+            scrolling="no">
+        </iframe>
+
+    </div>
 
 </body>
 </html>
+```
