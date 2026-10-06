@@ -4,11 +4,9 @@
     <base target="_top">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- ป้องกันการขยายหน้าจอผิดปกติบนมือถือ -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>MISSION REELS</title>
     <style>
-        /* ลบ Margin/Padding ของเบราว์เซอร์ เพื่อให้แสดงผลได้เต็มขอบจริง */
         * {
             margin: 0;
             padding: 0;
@@ -18,16 +16,22 @@
         html, body {
             width: 100%;
             height: 100%;
-            overflow: hidden; /* ป้องกันการเกิด Double Scrollbar */
+            width: 100dvw;
+            height: 100dvh;
+            overflow: hidden; /* ป้องกันไม่ให้เกิด Scrollbar */
+            position: fixed; /* ล็อกหน้าจอไม่ให้ไถเลื่อนบนมือถือ */
+            touch-action: none; /* ป้องกันการใช้เกสเจอร์เลื่อนหน้าจอ */
+            overscroll-behavior: none; /* ป้องกันการเด้งสปริงบน iOS */
             background-color: #ffffff;
         }
 
-        /* ปรับ iframe ให้เต็มพื้นที่หน้าจอและรองรับการแสดงผลบนอุปกรณ์เคลื่อนที่ */
         .full-screen-iframe {
             width: 100%;
-            height: 100vh; /* เติมเต็มความสูงของหน้าจอ */
-            height: 100dvh; /* รองรับ Dynamic Viewport สำหรับ iOS/Android safari bar */
-            border: none;
+            height: 100%;
+            width: 100dvw;
+            height: 100dvh;
+            border: 0;
+            outline: none;
             display: block;
         }
     </style>
@@ -37,8 +41,9 @@
     <iframe 
         class="full-screen-iframe"
         src="https://script.google.com/macros/s/AKfycbwdFplPwqslyRLq2jtb1kZT3Yv77tTK_kyUvutnaih6z-ghLr1L7-DX351EuWSLaFYW/exec" 
-        allow="geolocation; microphone; camera; clipboard-write;"
-        scrolling="yes">
+        allow="geolocation *; microphone *; camera *; clipboard-write *"
+        allowfullscreen="true"
+        scrolling="no">
     </iframe>
 
 </body>
